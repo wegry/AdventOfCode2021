@@ -133,7 +133,6 @@ module Test =
         let c02ScrubberRating =
             calcLifeSupportRating testInput C02Scrubber
 
-        printfn "%A %A" oxygenGeneratorRating c02ScrubberRating
         assert (oxygenGeneratorRating = 23)
         assert (c02ScrubberRating = 10)
         assert (oxygenGeneratorRating * c02ScrubberRating = 230)
