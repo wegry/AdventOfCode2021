@@ -71,7 +71,6 @@ module Tests =
 
     let ``part 2 sample data`` () =
         let (depth, hPos, _) = testInput |> processPositionWithAim
-        printfn "%A" (depth, hPos)
         assert ((depth, hPos) = (15, 60))
 
 Tests.``part 1 sample data`` ()
