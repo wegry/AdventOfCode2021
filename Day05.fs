@@ -109,12 +109,10 @@ module Tests =
 
     let ``part 1 sample data`` () =
         let overlapCount = countOverlap false testInput
-        printfn "%A" overlapCount
         assert (overlapCount = 5)
 
     let ``part 2 sample data`` () =
         let overlapCount = countOverlap true testInput
-        printfn "%A" overlapCount
         assert (overlapCount = 12)
 
 Tests.``part 1 sample data`` ()
