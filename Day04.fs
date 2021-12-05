@@ -202,7 +202,6 @@ module Tests =
 
     let ``part 2 sample data`` () =
         let sum = lastBingo testInput
-        printfn "%A" sum
         assert (sum = 1924u)
 
 Tests.``part 1 sample data`` ()
