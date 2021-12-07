@@ -48,12 +48,10 @@ module Tests =
 
     let ``part 1 sample data`` () =
         let fishCount = fishSpawner testInput 18
-        printfn "%A" fishCount
         assert (fishCount = 26UL)
 
     let ``part 2 sample data`` () =
         let fishCount = fishSpawner testInput 256
-        printfn "%A" fishCount
         assert (fishCount = 26984457539UL)
 
 
