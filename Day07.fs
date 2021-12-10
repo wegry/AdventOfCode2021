@@ -60,7 +60,7 @@ let part_2 () =
     |> printfn "%A"
 
 
-let parts = (System.Int32.MaxValue, part_1, part_2)
+let parts = (7, part_1, part_2)
 
 module Tests =
     let testInput = ("16,1,2,0,4,2,7,1,2,14") |> parse
