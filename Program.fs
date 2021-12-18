@@ -9,7 +9,8 @@ let Days: Day [] =
        Day06.parts
        Day07.parts
        Day08.parts
-       Day09.parts |]
+       Day09.parts
+       Day10.parts |]
 
 // https://stackoverflow.com/a/4646066/1924257
 let duration f =
