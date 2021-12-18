@@ -33,7 +33,17 @@ let part1Patterns =
         n)
     |> Map.ofList
 
-let part_1_ (input: (Set<char> [] * Set<char> []) []) =
+let part2Patterns =
+    part1Patterns
+    |> Map.toArray
+    |> Array.map (fun t -> snd t, fst t)
+    |> Map.ofArray
+
+type Wire = Set<char>
+type Wires = Wire []
+type Input = (Wires * Wires) []
+
+let part_1_ (input: Input) =
     let lookingFor = [ 1; 4; 7; 8 ] |> Set.ofList
 
     input
@@ -51,6 +61,43 @@ let part_1_ (input: (Set<char> [] * Set<char> []) []) =
         sum)
     |> Array.sum
 
+let findUniqueLengths (wires: Wires) =
+    wires
+    |> Array.map (fun wire ->
+        wire,
+        match wire.Count with
+        | 2 -> Some(1)
+        | 3 -> Some(7)
+        | 4 -> Some(4)
+        | 7 -> Some(8)
+        | _ -> None)
+    |> Array.collect (fun (scrambled, maybeDecoded) ->
+        maybeDecoded
+        |> Option.map (fun n -> [| (n, scrambled) |])
+        |> Option.defaultValue [||])
+
+let mapSignals (input: Map<int, Wire>) =
+    match input.TryFind 1, input.TryFind 4, input.TryFind 7, input.TryFind 8 with
+    | Some (_1), Some (_4), Some (_7), Some (_8) ->
+        let a =
+            _7 |> Set.difference _4 |> Set.toSeq |> Seq.head
+
+        let d =
+            _4
+            |> Set.difference _1
+            |> Set.difference _7
+            |> Set.toSeq
+            |> Seq.head
+
+        [ 'a', a; 'd', d ]
+    | x -> failwithf "Map with nothing...%A" x
+
+
+
+// Needed a hint on reddit...
+let part_2_ (input: Input) = None
+// |> Array.map (fun (signals, output) -> signals |> findUniqueLengths |> mapSignals)
+
 let input =
     File.ReadLines("puzzle_input/day_08")
     |> Array.ofSeq
@@ -58,7 +105,8 @@ let input =
 
 let part_1 () = input |> part_1_ |> printfn "%A"
 
-let part_2 () = printfn "not hooked up"
+let part_2 () =
+    input |> part_2_ |> printfn "Not finished %A"
 
 let parts = (8, part_1, part_2)
 
